@@ -1,0 +1,40 @@
+<div id="hero-video" class="container">
+  <div class="row">
+    <div class="span12">
+      <h1>{{ title }}</h1>
+      <p>{{ description }}</p>
+      <p>{{ route }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <a ng-click="playVideo()">
+        <img ng-src="{{ imgsource }}" width="100%" alt="{{ title }}" >
+      </a>
+      <video id="videoPlayer" class="hidden" ng-src="{{ vidsource }}" width="100%"></video>
+    </div>
+  </div>
+  <div class="row">
+    <div class="video-control-bar">
+      <div class="span1">
+        <button id="playBtn" class="btn" ng-click="playVideo()" ng-show="vidElem.paused"><i class="icon-play"></i></button>
+        <button id="pauseBtn" class="btn" ng-click="pauseVideo()" ng-hide="vidElem.paused"><i class="icon-pause"></i></button>
+      </div>
+      <div class="span8">
+        <div class="video-controls-container">
+          <div id="progressParent" class="progress" ng-click="handleProgressClick($event)">
+            <div id="progressBar" class="bar"></div>
+            <div id="downloadBar" class="bar hidden"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span2">
+        <span id="timecodeText" class="btn">00:00:00 / 00:00:00</span>
+      </div>
+      <div class="span1">
+        <button id="muteBtn" class="btn" ng-click="muteVideo()" ng-hide="vidElem.muted"><i class="icon-volume-off"></i></button>
+        <button id="unmuteBtn" class="btn" ng-click="unmuteVideo()" ng-show="vidElem.muted"><i class="icon-volume-up"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

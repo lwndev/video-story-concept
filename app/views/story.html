@@ -1,0 +1,32 @@
+<div>
+  <img src="" width="100%">
+  <video-player
+    video-started="videoStarted(videoElement)"
+    video-paused="videoEnded()"
+    show-hero-video="showHeroVideo()"
+    hide-hero-video="hideHeroVideo()"
+    title="{{ video.title }}"
+    description="{{ video.description }}"
+    route="{{ video.route }}"
+    vidsource="{{ video.videoSrc }}"
+    imgsource="{{ video.imageSrc }}">
+  </video-player>
+  <div class="row">
+    <div class="span12">
+      <video-story content="{{ video }}"></video-story>
+    </div>
+  </div>
+  <footer>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <ul class="nav">
+          <li><float-player></float-player></li>
+          <li><a href="#story">back story</a></li>
+          <li><a href="#shoot">the shoot</a></li>
+          <li><a href="#edit">editing</a></li>
+          <li><a href="#post">sound design and post</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
