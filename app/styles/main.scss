@@ -3,7 +3,7 @@
 
 /* Put your CSS here */
 html, body {
-  margin: 0 20px 40px 20px;
+  margin: 0 20px 200px 20px;
 }
 
 $omni-fusion-green: #7cbf2e;
@@ -54,4 +54,36 @@ body {
 
 .video-controls-container {
   padding-top:4px;
+  width: 100%;
+}
+
+.video-control-bar {
+  width: 100%;
+}
+
+.video-control-bar .videoControlElement{
+  float: left;
+  margin: 0 10px;
+}
+
+.video-control-bar .progressBarControls{
+  float: none;
+  width: auto;
+  overflow: hidden;
+}
+
+.videoPlayerContainer {
+  position: relative;
+}
+
+.videoPlayerContainer .video-controls-right {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  right: 10px;
+}
+
+.videoPlayerContainer .video-controls-right .videoControlElement {
+  float: left;
+  margin: 0 10px;
 }
