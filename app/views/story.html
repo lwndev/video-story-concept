@@ -5,11 +5,13 @@
     video-paused="videoEnded()"
     show-hero-video="showHeroVideo()"
     hide-hero-video="hideHeroVideo()"
+    on-time-update="videoUpdate(currentTime,duration)"
     title="{{ video.title }}"
     description="{{ video.description }}"
     route="{{ video.route }}"
     vidsource="{{ video.videoSrc }}"
-    imgsource="{{ video.imageSrc }}">
+    imgsource="{{ video.imageSrc }}"
+    cuepoints="{{ video.cuepoints }}">
   </video-player>
   <div class="row">
     <div class="span12">

@@ -7,8 +7,10 @@ angular.module('storyConceptApp')
       $scope.video.description = service.description;
       $scope.video.imageSrc = service.imgSrc;
       $scope.video.videoSrc = service.vidSrc;
+      $scope.video.cuepoints = service.cuepoints;
     });
 
+    $scope.currentCuePoint = null;
     $scope.floatPlayerVisible = false;
 
     $scope.videoStarted = function (videoElement) {
@@ -19,6 +21,31 @@ angular.module('storyConceptApp')
 
     $scope.videoEnded = function () {
       console.log('video ended');
+    };
+
+    $scope.videoUpdate = function (currentTime, duration) {
+      console.log('currentTime:' + Math.floor(currentTime));
+      console.log('duration:' + Math.floor(duration));
+
+      var currentTimeToFixed = Math.floor(currentTime);
+      var durationToFixed = Math.floor(duration);
+
+      if($scope.currentCuePoint !== null){
+        for(var i = 0; i < $scope.video.cuepoints.length; i++){
+          $scope.hmsToSeconds($scope.video.cuepoints[i].timecode);
+          if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[i].timecode)){
+            $scope.currentCuePoint = $scope.video.cuepoints[i]
+          }
+        }
+      }else{
+        if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
+          $scope.currentCuePoint = $scope.video.cuepoints[0];
+        }
+      }
+
+      if($scope.currentCuePoint !== null){
+        console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
+      }
     };
 
     $scope.showHeroVideo = function () {
@@ -52,5 +79,11 @@ angular.module('storyConceptApp')
       $('#vidMirror').height(180);
     }
 
-    $scope.hideFooter();
+    $scope.hmsToSeconds = function (hms) {
+      var h = parseInt(hms.split(":")[0]) * 3600;
+      var m = parseInt(hms.split(":")[1]) * 60;
+      var s = parseInt(hms.split(":")[2]);
+
+      return h + m + s;
+    };
   });

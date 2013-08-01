@@ -2,5 +2,32 @@
     "title": "Foo Fighters: Back and Forth",
     "description": "Back to the back ya'll",
     "vidSrc": "http://video.luun.tv/Foo-Fighters-BackandForth-540p.mp4",
-    "imgSrc": "http://images.luun.tv/Foo-Fighters-BackandForth-poster.jpg"
+    "imgSrc": "http://images.luun.tv/Foo-Fighters-BackandForth-poster.jpg",
+    "cuepoints": [
+        {
+          "timecode":"00:00:01",
+          "title":"cuepoint 1",
+          "description" : "description of cuepoint 1"
+        },
+        {
+          "timecode":"00:00:05",
+          "title":"cuepoint 2",
+          "description" : "description of cuepoint 2"
+        },
+        {
+          "timecode":"00:00:30",
+          "title":"cuepoint 3",
+          "description" : "description of cuepoint 3"
+        },
+        {
+          "timecode":"00:00:41",
+          "title":"cuepoint 4",
+          "description" : "description of cuepoint 4"
+        },
+        {
+          "timecode":"00:01:11",
+          "title":"cuepoint 5",
+          "description" : "description of cuepoint 5"
+        }
+      ]
 }

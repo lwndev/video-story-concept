@@ -12,6 +12,7 @@ angular.module('storyConceptApp')
         videoPaused: '&',
         showHeroVideo: '&',
         hideHeroVideo: '&',
+        onTimeUpdate: '&',
         title: '@',
         description: '@',
         route: '@',
@@ -39,6 +40,7 @@ angular.module('storyConceptApp')
         scope.currentTime = 0;
         scope.timecode = "";
         scope.timecodeText = null;
+        scope.currentCuePoint = null;
 
         // Video Event Handers
 
@@ -85,6 +87,8 @@ angular.module('storyConceptApp')
           }else{
             scope.hideHeroVideo();
           }
+
+          scope.onTimeUpdate({currentTime: e.srcElement.currentTime, duration: e.srcElement.duration});
 
         });
 
@@ -167,7 +171,7 @@ angular.module('storyConceptApp')
 
         // Utility Functions
 
-        var secondsToHms = function secondsToHms(d) {
+        var secondsToHms = function (d) {
           d = Number(d);
           var h = Math.floor(d / 3600);
           var m = Math.floor(d % 3600 / 60);
