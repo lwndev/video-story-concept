@@ -19,15 +19,16 @@
     </div>
   </div>
   <footer>
-    <div class="navbar navbar-fixed-bottom">
+    <div class="navbar navbar-fixed-bottom" ng-hide="floatPlayerVisible == false" ng-show="floatPlayerVisible == true">
       <div class="navbar-inner">
-        <ul class="nav">
-          <li><float-player></float-player></li>
-          <li><a href="#story">back story</a></li>
-          <li><a href="#shoot">the shoot</a></li>
-          <li><a href="#edit">editing</a></li>
-          <li><a href="#post">sound design and post</a></li>
-        </ul>
+        <div class="floatPlayerContainer">
+          <float-player></float-player>
+        </div>
+        <div class="cuepointInfo">
+          <h2>{{ currentCuePoint.title }}</h2>
+          <p>{{ currentCuePoint.description }}</p>
+          <p>{{ currentCuePoint.timecode }}</p>
+        </div>
       </div>
     </div>
   </footer>

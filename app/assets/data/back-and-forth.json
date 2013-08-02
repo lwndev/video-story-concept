@@ -6,27 +6,27 @@
     "cuepoints": [
         {
           "timecode":"00:00:01",
-          "title":"cuepoint 1",
+          "title":"Title for Cuepoint 1",
           "description" : "description of cuepoint 1"
         },
         {
           "timecode":"00:00:05",
-          "title":"cuepoint 2",
+          "title":"Title for Cuepoint 2",
           "description" : "description of cuepoint 2"
         },
         {
           "timecode":"00:00:30",
-          "title":"cuepoint 3",
+          "title":"Title for Cuepoint 3",
           "description" : "description of cuepoint 3"
         },
         {
           "timecode":"00:00:41",
-          "title":"cuepoint 4",
+          "title":"Title for Cuepoint 4",
           "description" : "description of cuepoint 4"
         },
         {
           "timecode":"00:01:11",
-          "title":"cuepoint 5",
+          "title":"Title for Cuepoint 5",
           "description" : "description of cuepoint 5"
         }
       ]

@@ -8,6 +8,7 @@ angular.module('storyConceptApp')
       $scope.video.imageSrc = service.imgSrc;
       $scope.video.videoSrc = service.vidSrc;
       $scope.video.cuepoints = service.cuepoints;
+      $scope.video.hasCuepoints = ($scope.video.cuepoints !== undefined && $scope.video.cuepoints !== null);
     });
 
     $scope.currentCuePoint = null;
@@ -24,27 +25,32 @@ angular.module('storyConceptApp')
     };
 
     $scope.videoUpdate = function (currentTime, duration) {
-      console.log('currentTime:' + Math.floor(currentTime));
-      console.log('duration:' + Math.floor(duration));
 
-      var currentTimeToFixed = Math.floor(currentTime);
-      var durationToFixed = Math.floor(duration);
+      if($scope.video.hasCuepoints){
 
-      if($scope.currentCuePoint !== null){
-        for(var i = 0; i < $scope.video.cuepoints.length; i++){
-          $scope.hmsToSeconds($scope.video.cuepoints[i].timecode);
-          if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[i].timecode)){
-            $scope.currentCuePoint = $scope.video.cuepoints[i]
+        console.log('currentTime:' + Math.floor(currentTime));
+        console.log('duration:' + Math.floor(duration));
+
+        var currentTimeToFixed = Math.floor(currentTime);
+        var durationToFixed = Math.floor(duration);
+
+        if($scope.currentCuePoint !== null){
+          for(var i = 0; i < $scope.video.cuepoints.length; i++){
+            $scope.hmsToSeconds($scope.video.cuepoints[i].timecode);
+            if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[i].timecode)){
+              $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[i]  });
+            }
+          }
+        }else{
+          if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
+            $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[0] });
           }
         }
-      }else{
-        if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
-          $scope.currentCuePoint = $scope.video.cuepoints[0];
-        }
-      }
 
-      if($scope.currentCuePoint !== null){
-        console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
+        if($scope.currentCuePoint !== null){
+          console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
+        }
+
       }
     };
 
@@ -72,11 +78,11 @@ angular.module('storyConceptApp')
     };
 
     $scope.hideFooter = function() {
-      $('#vidMirror').height(0);
+      $scope.$apply(function(){ $scope.floatPlayerVisible = false } );
     }
 
     $scope.showFooter = function() {
-      $('#vidMirror').height(180);
+      $scope.$apply(function(){ $scope.floatPlayerVisible = true } );
     }
 
     $scope.hmsToSeconds = function (hms) {

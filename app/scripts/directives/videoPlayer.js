@@ -182,8 +182,6 @@ angular.module('storyConceptApp')
         function isElementInViewport(el) {
           var rect = el.getBoundingClientRect();
 
-          console.log(rect)
-
           return (
             rect.bottom >= (rect.height / 3) &&
               rect.left >= 0 &&
