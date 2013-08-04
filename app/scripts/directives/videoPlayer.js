@@ -60,11 +60,11 @@ angular.module('storyConceptApp')
         scope.videoPlayer.bind('timeupdate', function (e) {
 
           if (scope.progressBar === null) {
-            scope.progressBar = $('#progressBar');
+            scope.progressBar = $('#progress-bar');
           }
 
           if (scope.timecodeText === null) {
-            scope.timecodeText = $('#timecodeText');
+            scope.timecodeText = $('#timecode-text');
           }
 
           var progressValue = Math.floor((e.srcElement.currentTime / e.srcElement.duration) * 100);
@@ -96,11 +96,11 @@ angular.module('storyConceptApp')
         scope.videoPlayer.bind('progress', function (e) {
 
           if(scope.downloadBar === null) {
-            scope.downloadBar = $('#downloadBar');
+            scope.downloadBar = $('#download-bar');
           }
 
           if (scope.progressParent === null) {
-            scope.progressParent = $('#progressParent');
+            scope.progressParent = $('#progress-parent');
           }
 
           try {
@@ -150,6 +150,16 @@ angular.module('storyConceptApp')
         scope.unmuteVideo = function () {
           scope.vidElem.muted = false;
         };
+
+        scope.goFullscreen = function() {
+          if(scope.vidElem.mozRequestFullScreen) {
+            scope.vidElem.mozRequestFullScreen();
+          }else if(scope.vidElem.webkitRequestFullScreen){
+            scope.vidElem.webkitRequestFullScreen()
+          }else if(scope.vidElem.requestFullScreen){
+            scope.vidElem.requestFullScreen()
+          }
+        }
 
         // Handle click event on the progress bar
         scope.handleProgressClick = function (event) {
