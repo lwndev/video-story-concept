@@ -2,6 +2,10 @@
 
 angular.module('storyConceptApp')
   .controller('StoryCtrl', function ($scope, $routeParams, VideoFactory) {
+
+    $scope.videoIsPlaying;
+    $scope.videoIsMuted;
+
     $scope.video = VideoFactory.get({videoId: $routeParams.storyId}, function (service) {
       $scope.video.title = service.title;
       $scope.video.description = service.description;
@@ -51,6 +55,12 @@ angular.module('storyConceptApp')
           console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
         }
 
+        if(videoIsInViewport == true){
+          $scope.showHeroVideo();
+        }else{
+          $scope.hideHeroVideo();
+        }
+
       }
     };
 
@@ -92,4 +102,15 @@ angular.module('storyConceptApp')
 
       return h + m + s;
     };
+
+    function isElementInViewport(el) {
+      var rect = el.getBoundingClientRect();
+
+      return (
+        rect.bottom >= (rect.height / 3) &&
+          rect.left >= 0 &&
+          rect.height <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.width <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
   });

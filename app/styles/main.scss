@@ -46,10 +46,11 @@ body {
      -------------------------------------------------------------------------- */
 
 .video-player-container {
-  background-color: #000;
+  /*background-color: #000;   */
   padding-bottom: 5px;
 }
 
+/* override the bootstrap progress class */
 .progress {
   height: 8px;
   margin-bottom: 0;
@@ -84,7 +85,7 @@ body {
   width: 100%;
   height:20px;
   margin-bottom:10px;
-  background-color: #000;
+  /*background-color: #000;   */
 
   .video-controls-left {
     float: left;

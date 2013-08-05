@@ -1,0 +1,7 @@
+<div class="video-element-container">
+  <a ng-click="playVideo()">
+    <img ng-src="{{ imgsource }}" width="100%" alt="{{ title }}" >
+  </a>
+  <video id="video-player" class="hidden" src="http://video.luun.tv/Foo-Fighters-BackandForth-540p.mp4" width="100%"></video>
+  <video-control-progress-bar time-bar-update="timeUpdate" progress-bar-update="progressUpdate"></video-control-progress-bar>
+</div>

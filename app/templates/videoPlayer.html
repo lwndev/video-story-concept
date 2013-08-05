@@ -1,44 +1,17 @@
 <div id="hero-video" class="container">
   <div class="row">
-    <div class="span12">
-      <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12 video-player-container">
-      <div class="video-element-container">
-        <a ng-click="playVideo()">
-          <img ng-src="{{ imgsource }}" width="100%" alt="{{ title }}" >
-        </a>
-        <video id="video-player" class="hidden" ng-src="{{ vidsource }}" width="100%"></video>
-        <div class="progress-bar-controls video-control-element">
-          <div id="progressParent" class="progress" ng-click="handleProgressClick($event)">
-            <div id="progress-bar" class="bar"></div>
-            <div id="download-bar" class="bar hidden"></div>
-          </div>
-        </div>
-      </div>
-      <div class="video-control-bar">
-        <div class="video-controls-left">
-          <div class="play-pause-controls video-control-element">
-            <button id="playBtn" class="btn btn-inverse" ng-click="playVideo()" ng-show="vidElem.paused"><i class="icon-play icon-white"></i></button>
-            <button id="pauseBtn" class="btn btn-inverse" ng-click="pauseVideo()" ng-hide="vidElem.paused"><i class="icon-pause icon-white"></i></button>
-          </div>
-        </div>
-        <div class="video-controls-right">
-          <div class="timecode-controls video-control-element">
-            <span id="timecode-text" class="btn btn-inverse">00:00:00 / 00:00:00</span>
-          </div>
-          <div class="mute-controls video-control-element">
-            <button id="mute-btn" class="btn btn-inverse" ng-click="muteVideo()" ng-hide="vidElem.muted"><i class="icon-volume-off icon-white"></i></button>
-            <button id="unmute-btn" class="btn btn-inverse" ng-click="unmuteVideo()" ng-show="vidElem.muted"><i class="icon-volume-up icon-white"></i></button>
-          </div>
-          <div class="resize-controls video-control-element">
-            <button id="resize-btn-full" class="btn btn-inverse" ng-click="goFullscreen()"><i class="icon-resize-full icon-white"></i></button>
-          </div>
-        </div>
-      </div>
+    <div class="span12 video-element-container">
+      <video-playback
+        video-playback-is-playing="isPlaying"
+        video-playback-is-muted="isMuted"
+        on-timecode-update="onTimecodeUpdate(currentTime,duration)">
+
+      </video-playback>
+      <video-controls
+        video-controls-is-playing="isPlaying"
+        video-controls-is-muted="isMuted"
+        video-controls-timecode="timecodeText">
+      </video-controls>
     </div>
   </div>
 </div>
