@@ -5,6 +5,9 @@ angular.module('storyConceptApp')
 
     $scope.videoIsPlaying;
     $scope.videoIsMuted;
+    $scope.currentCuePoint = null;
+    $scope.floatPlayerVisible = false;
+
 
     $scope.video = VideoFactory.get({videoId: $routeParams.storyId}, function (service) {
       $scope.video.title = service.title;
@@ -15,8 +18,6 @@ angular.module('storyConceptApp')
       $scope.video.hasCuepoints = ($scope.video.cuepoints !== undefined && $scope.video.cuepoints !== null);
     });
 
-    $scope.currentCuePoint = null;
-    $scope.floatPlayerVisible = false;
 
     $scope.videoStarted = function (videoElement) {
       console.log('video started');

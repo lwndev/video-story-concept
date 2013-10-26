@@ -4,7 +4,7 @@ angular.module('storyConceptApp')
   .directive('videoPlayback', function () {
     return {
       scope: {
-        videoTime: '=',
+        videoPlaybackTimecode: '=',
         videoPlaybackIsPlaying: '=',
         videoPlaybackIsMuted: '='
       },
@@ -17,6 +17,7 @@ angular.module('storyConceptApp')
         scope.posterImage = element.find('img');
         scope.videoPlaybackIsPlaying = !scope.videoElement.paused;
         scope.videoPlaybackIsMuted = scope.videoElement.muted;
+        scope.videoPlaybackIsEnded = false;
         scope.progress = 0;
         scope.downloaded = 0;
         scope.totalDownloaded = 0;
@@ -27,6 +28,7 @@ angular.module('storyConceptApp')
         scope.timeUpdate = 0;
         scope.progressUpdate = 0;
         scope.currentCuePoint = null;
+        scope.videoPlaybackTimecode = null;
 
         // --------------------------------------------------------------------------
         // Scope Event Handlers
@@ -61,8 +63,7 @@ angular.module('storyConceptApp')
         // --------------------------------------------------------------------------
 
         scope.videoPlayer.bind('ended', function (e) {
-          scope.videoPlayer.addClass('hidden');
-          scope.posterImage.removeClass('hidden');
+
         });
 
         // Video volume change event handler
@@ -73,7 +74,7 @@ angular.module('storyConceptApp')
         // Video playback update handler
         scope.videoPlayer.bind('timeupdate', function (e) {
           scope.$apply(function () {
-            scope.timeUpdate = {currentTime: e.srcElement.currentTime, duration: e.srcElement.duration}
+            scope.videoPlaybackTimecode = {currentTime: e.srcElement.currentTime, duration: e.srcElement.duration};
           });
         });
 

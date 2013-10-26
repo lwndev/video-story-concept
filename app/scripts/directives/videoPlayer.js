@@ -11,9 +11,9 @@ angular.module('storyConceptApp')
         videoPaused: '&',
         showHeroVideo: '&',
         hideHeroVideo: '&',
-        onTimeUpdate: '&',
         isPlaying: '=',
-        isMuted: '='
+        isMuted: '=',
+        timecodeText: '='
       },
       restrict: 'E',
       link: function postLink(scope,element,attrs){
@@ -28,13 +28,17 @@ angular.module('storyConceptApp')
         scope.canvasContext = null;
         scope.currentCuePoint = null;
 
-        scope.onTimecodeUpdate = function (currentTime, duration) {
-          scope.duration = secondsToHms(duration);
-          scope.currentTime = secondsToHms(currentTime);
-          scope.timecode =  scope.currentTime + " / " + scope.duration;
+        scope.$watch('timeBarUpdate', function (newValue, oldValue) {
+          console.log('newValue: ' + newValue);
 
-          scope.$apply(function () { scope.timecodeText = scope.timecode });
-        }
+          if(newValue !== undefined){
+            scope.duration = secondsToHms(duration);
+            scope.currentTime = secondsToHms(currentTime);
+            scope.timecode =  scope.currentTime + " / " + scope.duration;
+
+            scope.$apply(function () { scope.timecodeText = scope.timecode });
+          }
+        });
 
         // refactor elements
 
