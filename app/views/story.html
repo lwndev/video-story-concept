@@ -3,7 +3,9 @@
   <p>Story Controller :: video is Muted {{ videoIsMuted }}</p>
   <video-player
     is-playing="videoIsPlaying"
-    is-muted="videoIsMuted"><!--
+    is-muted="videoIsMuted"
+    timecode-value="videoTimecodeValue"
+    timecode-text="videoTimecodeText"><!--
     video-started="videoStarted(videoElement)"
     video-paused="videoEnded()"
     show-hero-video="showHeroVideo()"

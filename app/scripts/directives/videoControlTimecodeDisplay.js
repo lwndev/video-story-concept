@@ -5,7 +5,7 @@ angular.module('storyConceptApp')
     return {
       templateUrl: '/templates/videoControlTimecodeDisplay.html',
       scope: {
-        videoControlTimecodeDisplay: '='
+        videoControlTimecodeDisplayValue: '='
       },
       restrict: 'E',
       link: function postLink(scope, element, attrs) {

@@ -5,6 +5,8 @@ angular.module('storyConceptApp')
 
     $scope.videoIsPlaying;
     $scope.videoIsMuted;
+    $scope.videoTimecodeValue;
+    $scope.videoTimecodeText;
     $scope.currentCuePoint = null;
     $scope.floatPlayerVisible = false;
 

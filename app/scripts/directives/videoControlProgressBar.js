@@ -20,14 +20,16 @@ angular.module('storyConceptApp')
 
         scope.$watch('timeBarUpdate', function (newValue, oldValue) {
 
-          var progressValue = Math.floor((newValue.currentTime / newValue.duration) * 100);
+          if(newValue != null && newValue !== undefined){
+            var progressValue = Math.floor((newValue.currentTime / newValue.duration) * 100);
 
-          scope.progress = progressValue;
+            scope.progress = progressValue;
 
-          scope.progressBar.attr('style', 'width:' + scope.progress + '%');
+            scope.progressBar.attr('style', 'width:' + scope.progress + '%');
 
-          if(progressValue > 0){
-            scope.downloadBar.removeClass('hidden');
+            if(progressValue > 0){
+              scope.downloadBar.removeClass('hidden');
+            }
           }
 
         });

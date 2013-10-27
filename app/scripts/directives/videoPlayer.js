@@ -12,7 +12,10 @@ angular.module('storyConceptApp')
         showHeroVideo: '&',
         hideHeroVideo: '&',
         isPlaying: '=',
+        isPaused: '=',
+        isEnded: '=',
         isMuted: '=',
+        timecodeValue: '=',
         timecodeText: '='
       },
       restrict: 'E',
@@ -28,15 +31,11 @@ angular.module('storyConceptApp')
         scope.canvasContext = null;
         scope.currentCuePoint = null;
 
-        scope.$watch('timeBarUpdate', function (newValue, oldValue) {
-          console.log('newValue: ' + newValue);
-
+        scope.$watch('timecodeValue', function (newValue, oldValue) {
           if(newValue !== undefined){
-            scope.duration = secondsToHms(duration);
-            scope.currentTime = secondsToHms(currentTime);
-            scope.timecode =  scope.currentTime + " / " + scope.duration;
-
-            scope.$apply(function () { scope.timecodeText = scope.timecode });
+            scope.duration = secondsToHms(newValue.duration);
+            scope.currentTime = secondsToHms(newValue.currentTime);
+            scope.timecodeText =  scope.currentTime + " / " + scope.duration;
           }
         });
 
