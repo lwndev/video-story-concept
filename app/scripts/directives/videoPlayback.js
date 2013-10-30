@@ -114,8 +114,8 @@ angular.module('storyConceptApp')
           scope.videoElement.muted = false;
         }
 
-        scope.seekToTime = function (data) {
-          console.log(data);
+        scope.seekToTime = function ( value ) {
+          scope.videoElement.currentTime = value;
         }
 
         scope.goFullscreen = function() {

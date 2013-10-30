@@ -54,8 +54,7 @@ angular.module('storyConceptApp')
           percentTime = Math.round((percentWidth / 100) * scope.duration);
 
           try {
-            //scope.videoElement.currentTime = percentTime;
-            scope.seekToTime = {time: percentTime};
+            scope.seekToTime({time: percentTime});
           } catch (e) {
             console.log("cannot seek to time");
           }
