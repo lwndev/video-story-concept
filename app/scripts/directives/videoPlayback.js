@@ -8,7 +8,8 @@ angular.module('storyConceptApp')
         videoPlaybackIsPlaying: '=',
         videoPlaybackIsPaused: '=',
         videoPlaybackIsEnded: '=',
-        videoPlaybackIsMuted: '='
+        videoPlaybackIsMuted: '=',
+        videoPlaybackIsStarted: '='
       },
       templateUrl: '/templates/videoPlayback.html',
       restrict: 'E',
@@ -18,10 +19,10 @@ angular.module('storyConceptApp')
         scope.videoElement = scope.videoPlayer[0];
         scope.posterImage = element.find('img');
         scope.videoPlaybackIsStarted = false;
-        scope.videoPlaybackIsPlaying = !scope.videoElement.paused;
-        scope.videoPlaybackIsPaused = scope.videoElement.paused;
-        scope.videoPlaybackIsMuted = scope.videoElement.muted;
-        scope.videoPlaybackIsEnded = scope.videoElement.ended;
+        scope.videoPlaybackIsPlaying = false;
+        scope.videoPlaybackIsPaused = true;
+        scope.videoPlaybackIsMuted = false;
+        scope.videoPlaybackIsEnded = false;
         scope.progress = 0;
         scope.downloaded = 0;
         scope.totalDownloaded = 0;
@@ -68,6 +69,11 @@ angular.module('storyConceptApp')
 
         scope.videoPlayer.bind('ended', function (e) {
           scope.videoPlaybackIsEnded = true;
+          scope.videoPlayerIsStarted = false;
+        });
+
+        scope.videoPlayer.bind('play', function (e) {
+          scope.videoPlayerIsStarted = true;
         });
 
         // Video volume change event handler

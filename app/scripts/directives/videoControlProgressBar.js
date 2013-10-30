@@ -15,6 +15,7 @@ angular.module('storyConceptApp')
 
         scope.progress = 0;
         scope.duration = 0;
+        scope.progressValue = 0;
         scope.progressParent = element.children().children();
         scope.progressBar = $(scope.progressParent.children()[0]);
         scope.downloadBar =  $(scope.progressParent.children()[1]);
@@ -29,14 +30,11 @@ angular.module('storyConceptApp')
             scope.duration = newValue.duration;
 
             scope.progressBar.attr('style', 'width:' + scope.progress + '%');
-
-            if(progressValue > 0){
-              scope.downloadBar.removeClass('hidden');
-            }
           }
 
         });
 
+        // Listen for time update from the video playback
         scope.$watch('progressBarUpdate', function (newValue, oldValue) {
           scope.downloadBar.attr('style', 'width:' + newValue.downloaded + '%');
         });

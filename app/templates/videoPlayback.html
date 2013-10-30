@@ -1,21 +1,21 @@
 <div class="video-element-container">
   <a ng-click="playVideo()">
     <img
-            ng-show="videoPlaybackIsEnded"
-            ng-hide="videoPlaybackIsPlaying" n
-            g-src="http://images.luun.tv/Foo-Fighters-BackandForth-poster.jpg"
-            width="100%" alt="{{ title }}" >
+      ng-hide="videoPlaybackIsPlaying"
+      ng-src="http://images.luun.tv/Foo-Fighters-BackandForth-poster.jpg"
+      width="100%" alt="{{ title }}" >
   </a>
   <video
-          id="video-player"
-          ng-show="videoPlaybackIsPlaying"
-          ng-hide="videoPlaybackIsEnded"
-          src="http://video.luun.tv/Foo-Fighters-BackandForth-540p.mp4"
-          width="100%">
+      id="video-player"
+      ng-show="videoPlaybackIsPlaying"
+      src="http://video.luun.tv/Foo-Fighters-BackandForth-540p.mp4"
+      width="100%">
   </video>
   <video-control-progress-bar
-          time-bar-update="videoPlaybackTimecode"
-          progress-bar-update="progressUpdate"
-          seek-to-time="seekToTime(time)">
+      ng-show="videoPlaybackIsPlaying"
+      ng-hide="{{ videoPlaybackIsEnded || !videoPlaybackIsStarted }}"
+      time-bar-update="videoPlaybackTimecode"
+      progress-bar-update="progressUpdate"
+      seek-to-time="seekToTime(time)">
   </video-control-progress-bar>
 </div>
