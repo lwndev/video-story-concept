@@ -114,6 +114,10 @@ angular.module('storyConceptApp')
           scope.videoElement.muted = false;
         }
 
+        scope.seekToTime = function (data) {
+          console.log(data);
+        }
+
         scope.goFullscreen = function() {
           if(scope.videoElement.mozRequestFullScreen) {
             scope.videoElement.mozRequestFullScreen();
