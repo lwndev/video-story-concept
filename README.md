@@ -9,8 +9,10 @@ This project is intended as a proof-of-concept for a blog-post like format that 
 This project uses a Yeoman Angular generator so you should start by making sure that node.js and Yeoman are installed.
 
 Node can be installed from http://nodejs.org
+
 Yeoman is installed via npm
-  sudo npm install yo
+    
+    sudo npm install yo
 
 Once you have those applications installed and the repo cloned you'll need to pull dependencies via node and bower
 
