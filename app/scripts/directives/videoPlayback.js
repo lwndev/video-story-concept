@@ -7,9 +7,10 @@ angular.module('storyConceptApp')
         videoPlaybackTimecode: '=',
         videoPlaybackIsPlaying: '=',
         videoPlaybackIsPaused: '=',
-        videoPlaybackIsEnded: '=',
+        videoPlaybackIsStarted: '&',
+        videoPlaybackIsEnded: '&',
         videoPlaybackIsMuted: '=',
-        videoPlaybackIsStarted: '='
+        videoPlaybackGoFullscreen: '@'
       },
       templateUrl: '/templates/videoPlayback.html',
       restrict: 'E',
@@ -18,11 +19,8 @@ angular.module('storyConceptApp')
         scope.videoPlayer = element.find('video');
         scope.videoElement = scope.videoPlayer[0];
         scope.posterImage = element.find('img');
-        scope.videoPlaybackIsStarted = false;
-        scope.videoPlaybackIsPlaying = false;
-        scope.videoPlaybackIsPaused = true;
-        scope.videoPlaybackIsMuted = false;
-        scope.videoPlaybackIsEnded = false;
+        scope.showVideoElement = false;
+        scope.showPosterFrame = true;
         scope.progress = 0;
         scope.downloaded = 0;
         scope.totalDownloaded = 0;
@@ -34,6 +32,12 @@ angular.module('storyConceptApp')
         scope.progressUpdate = 0;
         scope.currentCuePoint = null;
         scope.videoPlaybackTimecode = null;
+
+        scope.videoPlaybackIsStarted = false;
+        scope.videoPlaybackIsEnded = false;
+        scope.videoPlaybackIsPlaying = false;
+        scope.videoPlaybackIsPaused = scope.videoElement.paused;
+        scope.videoPlaybackIsMuted = false;
 
         // --------------------------------------------------------------------------
         // Scope Event Handlers
@@ -68,27 +72,42 @@ angular.module('storyConceptApp')
         // --------------------------------------------------------------------------
 
         scope.videoPlayer.bind('ended', function (e) {
-          scope.videoPlaybackIsEnded = true;
-          scope.videoPlayerIsStarted = false;
+          scope.$apply(function () {
+            scope.videoPlaybackIsEnded = true;
+            scope.videoPlaybackIsStarted = false;
+            scope.showVideoElement = false;
+            scope.showPosterFrame = true;
+          });
         });
 
         scope.videoPlayer.bind('play', function (e) {
-          scope.videoPlayerIsStarted = true;
+          scope.$apply(function () {
+            scope.videoPlaybackIsStarted = true;
+            scope.videoPlaybackIsPlaying = true;
+            scope.videoPlaybackIsPaused = false;
+            scope.videoPlaybackIsEnded = false;
+            scope.showVideoElement = true;
+            scope.showPosterFrame = false;
+          });
         });
 
-        // Video volume change event handler
+        scope.videoPlayer.bind('pause', function (e) {
+          scope.$apply(function () {
+            scope.videoPlaybackIsPlaying = false;
+            scope.videoPlaybackIsPaused = true;
+          });
+        });
+
         scope.videoPlayer.bind('volumechange', function (e) {
           console.log('scope.muted: ' + scope.videoElement.muted);
         });
 
-        // Video playback update handler
         scope.videoPlayer.bind('timeupdate', function (e) {
           scope.$apply(function () {
             scope.videoPlaybackTimecode = {currentTime: e.srcElement.currentTime, duration: e.srcElement.duration};
           });
         });
 
-        // Video download progress handler
         scope.videoPlayer.bind('progress', function (e) {
           try {
             var downloadValue = Math.floor((e.srcElement.buffered.end(0) / e.srcElement.duration) * 100);
@@ -124,7 +143,7 @@ angular.module('storyConceptApp')
           scope.videoElement.currentTime = value;
         }
 
-        scope.goFullscreen = function() {
+        scope.videoPlaybackGoFullscreen = function() {
           if(scope.videoElement.mozRequestFullScreen) {
             scope.videoElement.mozRequestFullScreen();
           }else if(scope.videoElement.webkitRequestFullScreen){

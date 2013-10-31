@@ -12,7 +12,6 @@ angular.module('storyConceptApp')
         showHeroVideo: '&',
         hideHeroVideo: '&',
         isPlaying: '=',
-        isPaused: '=',
         isEnded: '=',
         isMuted: '=',
         timecodeValue: '=',
@@ -32,7 +31,7 @@ angular.module('storyConceptApp')
         scope.currentCuePoint = null;
 
         scope.$watch('timecodeValue', function (newValue, oldValue) {
-          if(newValue !== undefined){
+          if(newValue !== undefined && newValue !== null){
             scope.duration = secondsToHms(newValue.duration);
             scope.currentTime = secondsToHms(newValue.currentTime);
             scope.timecodeText =  scope.currentTime + " / " + scope.duration;
@@ -42,18 +41,17 @@ angular.module('storyConceptApp')
         // refactor elements
 
         scope.$watch('isPlaying', function () {
-          console.log('videoPlayer :: handleIsPlaying change');
+          
         });
 
         scope.$watch('isMuted', function () {
-          console.log('videoPlayer :: handleIsMuted change');
+          
         });
 
-        $(window).on('scroll',function () {
-          if(scope.vidElem !== undefined && scope.vidElem !== null){
-            videoIsInViewport = isElementInViewport(scope.vidElem);
-          }
-        });
+        scope.goFullscreen = function () {
+          scope.videoPlayback.videoPlaybackGoFullscreen();
+        };
+
 
         // --------------------------------------------------------------------------
         // Utility Functions

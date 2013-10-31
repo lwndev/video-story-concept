@@ -79,6 +79,7 @@ body {
 #download-bar {
   background-image: linear-gradient(to bottom, #eeeeee, #bbbbbb);
   background-color: #cccccc;
+  pointer-events: none;
 }
 
 .video-control-bar {
