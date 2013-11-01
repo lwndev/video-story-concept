@@ -10,7 +10,6 @@ angular.module('storyConceptApp')
     $scope.currentCuePoint = null;
     $scope.floatPlayerVisible = false;
 
-
     $scope.video = VideoFactory.get({videoId: $routeParams.storyId}, function (service) {
       $scope.video.title = service.title;
       $scope.video.description = service.description;
@@ -27,6 +26,10 @@ angular.module('storyConceptApp')
       $scope.setVideoSource(videoElement);
     };
 
+    $scope.videoPlaying = function () {
+      console.log('video playing');
+    };
+
     $scope.videoEnded = function () {
       console.log('video ended');
     };
@@ -35,9 +38,6 @@ angular.module('storyConceptApp')
 
       if($scope.video.hasCuepoints){
 
-        console.log('currentTime:' + Math.floor(currentTime));
-        console.log('duration:' + Math.floor(duration));
-
         var currentTimeToFixed = Math.floor(currentTime);
         var durationToFixed = Math.floor(duration);
 
@@ -45,23 +45,17 @@ angular.module('storyConceptApp')
           for(var i = 0; i < $scope.video.cuepoints.length; i++){
             $scope.hmsToSeconds($scope.video.cuepoints[i].timecode);
             if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[i].timecode)){
-              $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[i]  });
+              $scope.currentCuePoint = $scope.video.cuepoints[i];
             }
           }
         }else{
           if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
-            $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[0] });
+            $scope.currentCuePoint = $scope.video.cuepoints[0]
           }
         }
 
         if($scope.currentCuePoint !== null){
           console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
-        }
-
-        if(videoIsInViewport == true){
-          $scope.showHeroVideo();
-        }else{
-          $scope.hideHeroVideo();
         }
 
       }
@@ -105,15 +99,4 @@ angular.module('storyConceptApp')
 
       return h + m + s;
     };
-
-    function isElementInViewport(el) {
-      var rect = el.getBoundingClientRect();
-
-      return (
-        rect.bottom >= (rect.height / 3) &&
-          rect.left >= 0 &&
-          rect.height <= (window.innerHeight || document.documentElement.clientHeight) &&
-          rect.width <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
   });

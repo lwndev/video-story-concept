@@ -1,26 +1,26 @@
 <div>
-  <p>Story Controller :: video is Playing {{ videoIsPlaying }}</p>
-  <p>Story Controller :: video is Muted {{ videoIsMuted }}</p>
   <video-player
     is-playing="videoIsPlaying"
+    is-paused="videoIsPaused"
     is-muted="videoIsMuted"
+    is-started="videoIsStarted"
+    is-ended="videoIsEnded"
     is-fullscreen="videoIsFullscreen"
     timecode-value="videoTimecodeValue"
-    timecode-text="videoTimecodeText"><!--
+    timecode-text="videoTimecodeText"
+    story-vid-src="{{ video.videoSrc }}"
+    story-img-src="{{ video.imageSrc }}"
+    cuepoints="{{ video.cuepoints }}"
     video-started="videoStarted(videoElement)"
-    video-paused="videoEnded()"
+    video-playing="videoPlaying()"
+    video-paused="videoPaused()"
+    video-ended="videoEnded()"
+    video-update="videoUpdate(currentTime,duration)"
     show-hero-video="showHeroVideo()"
     hide-hero-video="hideHeroVideo()"
-    on-time-update="videoUpdate(currentTime,duration)"
-    title="{{ video.title }}"
-    description="{{ video.description }}"
-    route="{{ video.route }}"
-    vidsource="{{ video.videoSrc }}"
-    imgsource="{{ video.imageSrc }}"
-    cuepoints="{{ video.cuepoints }} -->
+    on-time-update="videoUpdate(currentTime,duration)">
   </video-player>
 
-  <!--
   <div class="row">
     <div class="span12">
       <video-story content="{{ video }}"></video-story>
@@ -40,5 +40,4 @@
       </div>
     </div>
   </footer>
-  -->
 </div>

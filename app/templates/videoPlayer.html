@@ -4,10 +4,13 @@
       <video-playback
         video-playback-is-playing="isPlaying"
         video-playback-is-paused="isPaused"
+        video-playback-is-started="isStarted"
         video-playback-is-ended="isEnded"
         video-playback-is-muted="isMuted"
         video-playback-timecode="timecodeValue"
-        video-playback-is-fullscreen="isFullscreen">
+        video-playback-is-fullscreen="isFullscreen"
+        video-playback-vid-src="{{ storyVidSrc }}"
+        video-playback-img-src="{{ storyImgSrc }}">
       </video-playback>
       <video-controls
         video-controls-is-playing="isPlaying"

@@ -6,14 +6,20 @@ angular.module('storyConceptApp')
     return {
       templateUrl: '/templates/videoPlayer.html',
       scope: {
-        videoSource: '@',
+        storyVidSrc: '@',
+        storyImgSrc: '@',
+        videoPlaying: '&',
         videoStarted: '&',
         videoPaused: '&',
+        videoEnded: '&',
+        videoUpdate: '&',
         showHeroVideo: '&',
         hideHeroVideo: '&',
         isPlaying: '=',
+        isPaused: '=',
         isEnded: '=',
         isMuted: '=',
+        isStarted: '=',
         isFullscreen: '=',
         timecodeValue: '=',
         timecodeText: '='
@@ -30,23 +36,47 @@ angular.module('storyConceptApp')
         scope.timecodeText = '00:00:00 / 00:00:00';
         scope.canvasContext = null;
         scope.currentCuePoint = null;
+        scope.videoIsInViewport = true;
 
         scope.$watch('timecodeValue', function (newValue, oldValue) {
           if(newValue !== undefined && newValue !== null){
             scope.duration = secondsToHms(newValue.duration);
             scope.currentTime = secondsToHms(newValue.currentTime);
             scope.timecodeText =  scope.currentTime + " / " + scope.duration;
+
+            scope.videoUpdate({currentTime: newValue.currentTime, duration: newValue.duration});
           }
         });
 
-        // refactor elements
-
         scope.$watch('isPlaying', function () {
-          
+          if(scope.isPlaying == true){
+            console.log('isPlaying');
+            scope.videoPlaying();
+          }
+        });
+
+        scope.$watch('isPaused', function () {
+          if(scope.isPaused == true){
+            console.log('isPaused');
+          }
         });
 
         scope.$watch('isMuted', function () {
-          
+          if(scope.isMuted == true){
+            console.log('isMuted');
+          }
+        });
+
+        scope.$watch('isEnded', function () {
+          if(scope.isEnded == true){
+            console.log('isEnded');
+          }
+        });
+
+        scope.$watch('isStarted', function  () {
+          if(scope.isStarted == true){
+            console.log('isStarted');
+          }
         });
 
         scope.$watch('isFullscreen', function () {

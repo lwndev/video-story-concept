@@ -7,10 +7,12 @@ angular.module('storyConceptApp')
         videoPlaybackTimecode: '=',
         videoPlaybackIsPlaying: '=',
         videoPlaybackIsPaused: '=',
-        videoPlaybackIsStarted: '&',
-        videoPlaybackIsEnded: '&',
+        videoPlaybackIsStarted: '=',
+        videoPlaybackIsEnded: '=',
         videoPlaybackIsMuted: '=',
-        videoPlaybackIsFullscreen: '='
+        videoPlaybackIsFullscreen: '=',
+        videoPlaybackVidSrc: '@',
+        videoPlaybackImgSrc: '@'
       },
       templateUrl: '/templates/videoPlayback.html',
       restrict: 'E',
@@ -32,6 +34,7 @@ angular.module('storyConceptApp')
         scope.progressUpdate = 0;
         scope.currentCuePoint = null;
         scope.videoPlaybackTimecode = null;
+        scope.videoIsInViewport = true;
 
         scope.videoPlaybackIsStarted = false;
         scope.videoPlaybackIsEnded = false;
@@ -110,6 +113,14 @@ angular.module('storyConceptApp')
           scope.$apply(function () {
             scope.videoPlaybackTimecode = {currentTime: e.srcElement.currentTime, duration: e.srcElement.duration};
           });
+
+          scope.videoIsInViewport = isElementInViewport(scope.videoElement);
+
+          if(scope.videoIsInViewport === true && scope.showPosterFrame === false){
+            scope.showVideoElement = true;
+          }else{
+            scope.hideHeroVideo = false;
+          }
         });
 
         scope.videoPlayer.bind('progress', function (e) {
@@ -121,6 +132,12 @@ angular.module('storyConceptApp')
             });
           } catch(e) {}
 
+        });
+
+        $(window).on('scroll',function () {
+          if(scope.vidElem !== undefined && scope.vidElem !== null){
+            scope.videoIsInViewport = isElementInViewport(scope.vidElem);
+          }
         });
 
         // --------------------------------------------------------------------------
@@ -155,6 +172,21 @@ angular.module('storyConceptApp')
           }else if(scope.videoElement.requestFullScreen){
             scope.videoElement.requestFullScreen()
           }
+        }
+
+        // --------------------------------------------------------------------------
+        // Utility Functions
+        // --------------------------------------------------------------------------
+
+        function isElementInViewport(el) {
+          var rect = el.getBoundingClientRect();
+
+          return (
+            rect.bottom >= (rect.height / 3) &&
+              rect.left >= 0 &&
+              rect.height <= (window.innerHeight || document.documentElement.clientHeight) &&
+              rect.width <= (window.innerWidth || document.documentElement.clientWidth)
+            );
         }
       }
     };
