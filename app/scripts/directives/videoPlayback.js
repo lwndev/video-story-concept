@@ -10,7 +10,7 @@ angular.module('storyConceptApp')
         videoPlaybackIsStarted: '&',
         videoPlaybackIsEnded: '&',
         videoPlaybackIsMuted: '=',
-        videoPlaybackGoFullscreen: '@'
+        videoPlaybackIsFullscreen: '='
       },
       templateUrl: '/templates/videoPlayback.html',
       restrict: 'E',
@@ -36,7 +36,7 @@ angular.module('storyConceptApp')
         scope.videoPlaybackIsStarted = false;
         scope.videoPlaybackIsEnded = false;
         scope.videoPlaybackIsPlaying = false;
-        scope.videoPlaybackIsPaused = scope.videoElement.paused;
+        scope.videoPlaybackIsPaused = false;
         scope.videoPlaybackIsMuted = false;
 
         // --------------------------------------------------------------------------
@@ -65,6 +65,10 @@ angular.module('storyConceptApp')
               scope.unmuteVideo();
             }
           }
+        });
+
+        scope.$watch('videoPlaybackIsFullscreen', function () {
+          scope.videoPlaybackGoFullscreen();
         });
 
         // --------------------------------------------------------------------------

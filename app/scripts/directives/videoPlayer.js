@@ -14,6 +14,7 @@ angular.module('storyConceptApp')
         isPlaying: '=',
         isEnded: '=',
         isMuted: '=',
+        isFullscreen: '=',
         timecodeValue: '=',
         timecodeText: '='
       },
@@ -48,9 +49,9 @@ angular.module('storyConceptApp')
           
         });
 
-        scope.goFullscreen = function () {
-          scope.videoPlayback.videoPlaybackGoFullscreen();
-        };
+        scope.$watch('isFullscreen', function () {
+          console.log("isFullscreen");
+        });
 
 
         // --------------------------------------------------------------------------

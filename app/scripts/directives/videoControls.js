@@ -8,15 +8,8 @@ angular.module('storyConceptApp')
         videoControlsIsPlaying: '=',
         videoControlsIsMuted: '=',
         videoControlsTimecode: '=',
-        videoControlsGoFullscreen: '&'
+        videoControlsIsFullscreen: '='
       },
-      templateUrl: '/templates/videoControls.html',
-      link: function postLink(scope, element, attrs) {
-
-        // Handles call to enter fullscreen from a videoControlFullscreen instance
-        scope.videoControlsEnterFullscreen = function () {
-           scope.videoControlsGoFullscreen();
-         }
-      }
+      templateUrl: '/templates/videoControls.html'
     };
   });

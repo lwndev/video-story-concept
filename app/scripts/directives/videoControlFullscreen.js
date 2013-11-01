@@ -3,14 +3,14 @@
 angular.module('storyConceptApp')
   .directive('videoControlFullscreen', function () {
     return {
-      scope: {
-        onFullscreenButtonClick: '&'
-      },
       templateUrl: '/templates/videoControlFullscreen.html',
+      scope: {
+        buttonIsFullscreen: '='
+      },
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.goFullscreen = function () {
-          scope.onFullscreenButtonClick();
+          scope.buttonIsFullscreen = !scope.buttonIsFullscreen;
         }
       }
     };
