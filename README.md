@@ -1,6 +1,4 @@
-# Video Story Concept
-
-[![Build Status](https://travis-ci.org/lwndev/video-story-concept.png)](https://travis-ci.org/lwndev/video-story-concept.png)
+# Video Story Concept [![Build Status](https://travis-ci.org/lwndev/video-story-concept.png)](https://travis-ci.org/lwndev/video-story-concept.png)
 
 ## About
 
