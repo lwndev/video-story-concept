@@ -21,7 +21,7 @@ angular.module('storyConceptApp')
       },
       restrict: 'E',
       replace: true,
-      link: function postLink(scope,element,attrs){
+      link: function postLink(scope,element){
         var videoIsInViewport = true;
 
         scope.videoPlayer = element.find('video');
@@ -38,21 +38,21 @@ angular.module('storyConceptApp')
         scope.totalDownloaded = 0;
         scope.duration = 0;
         scope.currentTime = 0;
-        scope.timecode = "";
+        scope.timecode = '';
         scope.timecodeText = null;
         scope.currentCuePoint = null;
 
         // Video Event Handers
 
         // Video complete event handler
-        scope.videoPlayer.bind('ended', function (e) {
+        scope.videoPlayer.bind('ended', function () {
           scope.videoPlayer.addClass('hidden');
           scope.posterImage.removeClass('hidden');
           scope.downloadBar.addClass('hidden');
         });
 
         // Video volume change event handler
-        scope.videoPlayer.bind('volumechange', function (e) {
+        scope.videoPlayer.bind('volumechange', function () {
           console.log('scope.muted: ' + scope.vidElem.muted);
         });
 
@@ -73,7 +73,7 @@ angular.module('storyConceptApp')
 
           scope.duration = secondsToHms(scope.vidElem.duration);
           scope.currentTime = secondsToHms(scope.vidElem.currentTime);
-          scope.timecode =  scope.currentTime + " / " + scope.duration;
+          scope.timecode =  scope.currentTime + ' / ' + scope.duration;
 
           scope.progressBar.attr('style', 'width:' + scope.progress + '%');
           scope.timecodeText.text(scope.timecode);
@@ -82,7 +82,7 @@ angular.module('storyConceptApp')
             scope.downloadBar.removeClass('hidden');
           }
 
-          if(videoIsInViewport == true){
+          if(videoIsInViewport === true){
             scope.showHeroVideo();
           }else{
             scope.hideHeroVideo();
@@ -139,7 +139,7 @@ angular.module('storyConceptApp')
           scope.vidElem.pause();
 
           scope.videoPaused();
-        } ;
+        };
 
         // Mute video
         scope.muteVideo = function () {
@@ -155,11 +155,11 @@ angular.module('storyConceptApp')
           if(scope.vidElem.mozRequestFullScreen) {
             scope.vidElem.mozRequestFullScreen();
           }else if(scope.vidElem.webkitRequestFullScreen){
-            scope.vidElem.webkitRequestFullScreen()
+            scope.vidElem.webkitRequestFullScreen();
           }else if(scope.vidElem.requestFullScreen){
-            scope.vidElem.requestFullScreen()
+            scope.vidElem.requestFullScreen();
           }
-        }
+        };
 
         // Handle click event on the progress bar
         scope.handleProgressClick = function (event) {
@@ -186,7 +186,7 @@ angular.module('storyConceptApp')
           var h = Math.floor(d / 3600);
           var m = Math.floor(d % 3600 / 60);
           var s = Math.floor(d % 3600 % 60);
-          return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
+          return ((h > 0 ? h + ':' : '') + (m > 0 ? (h > 0 && m < 10 ? '0' : '') + m + ':' : '0:') + (s < 10 ? '0' : '') + s);
         };
 
         function isElementInViewport(el) {

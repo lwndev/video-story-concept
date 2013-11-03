@@ -32,33 +32,38 @@ angular.module('storyConceptApp')
         console.log('duration:' + Math.floor(duration));
 
         var currentTimeToFixed = Math.floor(currentTime);
-        var durationToFixed = Math.floor(duration);
 
         if($scope.currentCuePoint !== null){
           for(var i = 0; i < $scope.video.cuepoints.length; i++){
             $scope.hmsToSeconds($scope.video.cuepoints[i].timecode);
             if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[i].timecode)){
-              $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[i]  });
+              $scope.applyCuePoint($scope.video.cuepoints[i]);
             }
           }
         }else{
           if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
-            $scope.$apply(function(){ $scope.currentCuePoint = $scope.video.cuepoints[0] });
+            $scope.applyCuePoint($scope.video.cuepoints[0]);
           }
         }
 
         if($scope.currentCuePoint !== null){
-          console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
+          console.log('$scope.currentCuePoint:' + $scope.currentCuePoint.timecode);
         }
 
       }
+    };
+
+    $scope.applyCuePoint = function ( cuepoint ) {
+      $scope.$apply(function(){
+        $scope.currentCuePoint = cuepoint;
+      });
     };
 
     $scope.showHeroVideo = function () {
 
       console.log('show hero video');
 
-      if($scope.floatPlayerVisible == true){
+      if($scope.floatPlayerVisible === true){
         $scope.floatPlayerStopDraw();
         $scope.hideFooter();
         $scope.floatPlayerVisible = false;
@@ -69,7 +74,7 @@ angular.module('storyConceptApp')
 
       console.log('hide hero video');
 
-      if($scope.floatPlayerVisible == false){
+      if($scope.floatPlayerVisible === false){
         $scope.floatPlayerDraw();
         $scope.showFooter();
         $scope.floatPlayerVisible = true;
@@ -78,17 +83,21 @@ angular.module('storyConceptApp')
     };
 
     $scope.hideFooter = function() {
-      $scope.$apply(function(){ $scope.floatPlayerVisible = false } );
-    }
+      $scope.$apply(function(){
+        $scope.floatPlayerVisible = false;
+      });
+    };
 
     $scope.showFooter = function() {
-      $scope.$apply(function(){ $scope.floatPlayerVisible = true } );
-    }
+      $scope.$apply(function(){
+        $scope.floatPlayerVisible = true;
+      });
+    };
 
     $scope.hmsToSeconds = function (hms) {
-      var h = parseInt(hms.split(":")[0]) * 3600;
-      var m = parseInt(hms.split(":")[1]) * 60;
-      var s = parseInt(hms.split(":")[2]);
+      var h = parseInt(hms.split(':')[0],10) * 3600;
+      var m = parseInt(hms.split(':')[1],10) * 60;
+      var s = parseInt(hms.split(':')[2],10);
 
       return h + m + s;
     };
