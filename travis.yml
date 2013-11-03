@@ -1,3 +1,1 @@
-script: grunt test --verbose
-
-script: grunt dist
+script: grunt test
