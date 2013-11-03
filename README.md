@@ -25,3 +25,6 @@ When all dependencies are installed, you can run the project with Grunt
 
     grunt server
 
+## Demo
+
+A demo of this project can be found at http://lwndev.github.io/video-story-concept
