@@ -1,5 +1,7 @@
 # Video Story Concept
 
+[![Build Status](https://travis-ci.org/lwndev/video-story-concept.png)](https://travis-ci.org/lwndev/video-story-concept.png)
+
 ## About
 
 This project is intended as a proof-of-concept for a blog-post like format that allows for a music video and supplemental materials to be displayed together and which will display an overlay video player when the user scrolls the main video out of view.
