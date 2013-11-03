@@ -11,8 +11,5 @@ describe('Service: VideoFactory', function () {
     VideoFactory = _VideoFactory_;
   }));
 
-  it('should do something', function () {
-    expect(!!VideoFactory).toBe(true);
-  });
 
 });
