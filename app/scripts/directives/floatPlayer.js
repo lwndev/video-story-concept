@@ -3,7 +3,7 @@
 angular.module('storyConceptApp')
   .directive('floatPlayer', function () {
     return {
-      templateUrl: '/templates/floatPlayer.html',
+      templateUrl: 'templates/floatPlayer.html',
       replace: true,
       restrict: 'E',
       link: function postLink(scope, element) {

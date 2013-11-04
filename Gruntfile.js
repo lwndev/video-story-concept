@@ -245,6 +245,7 @@ module.exports = function (grunt) {
             '.htaccess',
             'CNAME',
             'bower_components/**/*',
+            'assets/**/*',
             'images/{,*/}*.{gif,webp,svg}',
             'styles/fonts/*'
           ]
