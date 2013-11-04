@@ -1,0 +1,1 @@
+"use strict";angular.module("storyConceptApp",["ngResource"]).config(["$routeProvider",function(a){a.when("/",{redirectTo:"/story/back-and-forth"}).when("/story/:storyId",{templateUrl:"views/story.html",controller:"StoryCtrl"}).otherwise({redirectTo:"/"})}]);
