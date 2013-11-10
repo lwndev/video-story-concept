@@ -1,3 +1,36 @@
-script: grunt test --verbose
-
-script: grunt dist
+cd language: node_js
+node_js:
+- 0.8
+branches:
+  only:
+  - video-player-directive-refactor
+env:
+  global:
+  - GH_OWNER: lwndev
+  - GH_PROJECT_NAME: video-story-concept
+  - secure: gG/yH5obOhUeu+/Q+toEkNI+mdce+Lg5vx0DWbEdLpVNi9CPi83VUiiaDhIlEdnHMwMTqeBJLemPcZmyyk5zM7RVqbO75IDrtqgW2tvYJ5Lb/NSsGU0kXPdDsTZYetwftxaElkuwyjuJvdJQ7UawZmE/DG4PrfTHVjRvPbZBCzI=
+before_script:
+- gem update --system
+- gem install compass
+- npm install -g grunt-cli bower
+script:
+- npm install
+- bower install
+- grunt
+after_success:
+- git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME}
+  site > /dev/null 2>&1
+- cd site
+- if git checkout gh-pages; then git checkout -b gh-pages; fi
+- git rm -r .
+- cp -R ../dist/* .
+- cp ../dist/.* .
+- git add -f .
+- git config user.email "leif@lwndev.com"
+- git config user.name "lwndev"
+- git commit -am "adding the yeoman build files to gh-pages [ci skip]"
+- git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
+  > /dev/null 2>&1
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
