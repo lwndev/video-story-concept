@@ -1,11 +1,7 @@
 <div>
-  <div class="row">
-    <div class="span12">
-      <img src="" width="100%">
-      <video-player video-started="videoStarted(videoElement)" video-paused="videoEnded()" show-hero-video="showHeroVideo()" hide-hero-video="hideHeroVideo()" on-time-update="videoUpdate(currentTime,duration)" title="{{ video.title }}" description="{{ video.description }}" route="{{ video.route }}" vidsource="{{ video.videoSrc }}" imgsource="{{ video.imageSrc }}" cuepoints="{{ video.cuepoints }}">
-      </video-player>
-    </div>
-  </div>
+  <video-player is-playing="videoIsPlaying" is-paused="videoIsPaused" is-muted="videoIsMuted" is-started="videoIsStarted" is-ended="videoIsEnded" is-fullscreen="videoIsFullscreen" timecode-value="videoTimecodeValue" timecode-text="videoTimecodeText" story-vid-src="{{ video.videoSrc }}" story-img-src="{{ video.imageSrc }}" cuepoints="{{ video.cuepoints }}" video-started="videoStarted(videoElement)" video-playing="videoPlaying()" video-paused="videoPaused()" video-ended="videoEnded()" video-update="videoUpdate(currentTime,duration)" show-hero-video="showHeroVideo()" hide-hero-video="hideHeroVideo()" on-time-update="videoUpdate(currentTime,duration)">
+  </video-player>
+
   <div class="row">
     <div class="span12">
       <video-story content="{{ video }}"></video-story>
@@ -17,7 +13,7 @@
         <div class="float-player-container">
           <float-player></float-player>
         </div>
-        <div class="cuepoint-info">
+        <div class="cuepoint-info`">
           <h2>{{ currentCuePoint.title }}</h2>
           <p>{{ currentCuePoint.description }}</p>
           <p>{{ currentCuePoint.timecode }}</p>
