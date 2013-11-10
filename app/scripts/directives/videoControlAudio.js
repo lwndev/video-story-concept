@@ -8,7 +8,7 @@ angular.module('storyConceptApp')
         buttonIsMuted: '='
       },
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope) {
         scope.toggleMute = function () {
           scope.buttonIsMuted = !scope.buttonIsMuted;
         };

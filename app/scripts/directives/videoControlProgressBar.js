@@ -11,7 +11,7 @@ angular.module('storyConceptApp')
       },
       templateUrl: '/templates/videoControlProgressBar.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
 
         scope.progress = 0;
         scope.duration = 0;
@@ -21,9 +21,9 @@ angular.module('storyConceptApp')
         scope.downloadBar =  $(scope.progressParent.children()[1]);
         scope.progressBarContainerWidth = 0;
 
-        scope.$watch('timeBarUpdate', function (newValue, oldValue) {
+        scope.$watch('timeBarUpdate', function (newValue) {
 
-          if(newValue != null && newValue !== undefined){
+          if(newValue !== null && newValue !== undefined){
             var progressValue = Math.floor((newValue.currentTime / newValue.duration) * 100);
 
             scope.progress = progressValue;
@@ -35,7 +35,7 @@ angular.module('storyConceptApp')
         });
 
         // Listen for time update from the video playback
-        scope.$watch('progressBarUpdate', function (newValue, oldValue) {
+        scope.$watch('progressBarUpdate', function (newValue) {
           scope.downloadBar.attr('style', 'width:' + newValue.downloaded + '%');
         });
 
@@ -54,7 +54,7 @@ angular.module('storyConceptApp')
           try {
             scope.seekToTime({time: percentTime});
           } catch (e) {
-            console.log("cannot seek to time");
+            console.log('cannot seek to time');
           }
 
         };

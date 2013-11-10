@@ -16,7 +16,7 @@ angular.module('storyConceptApp')
       },
       templateUrl: '/templates/videoPlayback.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
 
         scope.videoPlayer = element.find('video');
         scope.videoElement = scope.videoPlayer[0];
@@ -29,7 +29,7 @@ angular.module('storyConceptApp')
         scope.duration = 0;
         scope.currentTime = 0;
         scope.timecode = 0;
-        scope.timecodeText = "00:00:00 / 00:00:00";
+        scope.timecodeText = '00:00:00 / 00:00:00';
         scope.timeUpdate = 0;
         scope.progressUpdate = 0;
         scope.currentCuePoint = null;
@@ -78,7 +78,7 @@ angular.module('storyConceptApp')
         // Video Element Event Handlers
         // --------------------------------------------------------------------------
 
-        scope.videoPlayer.bind('ended', function (e) {
+        scope.videoPlayer.bind('ended', function () {
           scope.$apply(function () {
             scope.videoPlaybackIsEnded = true;
             scope.videoPlaybackIsStarted = false;
@@ -87,7 +87,7 @@ angular.module('storyConceptApp')
           });
         });
 
-        scope.videoPlayer.bind('play', function (e) {
+        scope.videoPlayer.bind('play', function () {
           scope.$apply(function () {
             scope.videoPlaybackIsStarted = true;
             scope.videoPlaybackIsPlaying = true;
@@ -98,14 +98,14 @@ angular.module('storyConceptApp')
           });
         });
 
-        scope.videoPlayer.bind('pause', function (e) {
+        scope.videoPlayer.bind('pause', function () {
           scope.$apply(function () {
             scope.videoPlaybackIsPlaying = false;
             scope.videoPlaybackIsPaused = true;
           });
         });
 
-        scope.videoPlayer.bind('volumechange', function (e) {
+        scope.videoPlayer.bind('volumechange', function () {
           console.log('scope.muted: ' + scope.videoElement.muted);
         });
 
@@ -146,33 +146,33 @@ angular.module('storyConceptApp')
 
         scope.playVideo = function () {
           scope.videoElement.play();
-        }
+        };
 
         scope.pauseVideo = function () {
           scope.videoElement.pause();
-        }
+        };
 
         scope.muteVideo = function () {
           scope.videoElement.muted = true;
-        }
+        };
 
         scope.unmuteVideo = function () {
           scope.videoElement.muted = false;
-        }
+        };
 
         scope.seekToTime = function ( value ) {
           scope.videoElement.currentTime = value;
-        }
+        };
 
         scope.videoPlaybackGoFullscreen = function() {
           if(scope.videoElement.mozRequestFullScreen) {
             scope.videoElement.mozRequestFullScreen();
           }else if(scope.videoElement.webkitRequestFullScreen){
-            scope.videoElement.webkitRequestFullScreen()
+            scope.videoElement.webkitRequestFullScreen();
           }else if(scope.videoElement.requestFullScreen){
-            scope.videoElement.requestFullScreen()
+            scope.videoElement.requestFullScreen();
           }
-        }
+        };
 
         // --------------------------------------------------------------------------
         // Utility Functions

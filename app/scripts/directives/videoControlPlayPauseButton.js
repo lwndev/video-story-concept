@@ -8,10 +8,10 @@ angular.module('storyConceptApp')
         buttonIsPlaying: '='
       },
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope) {
         scope.togglePlayPause = function () {
           scope.buttonIsPlaying = !scope.buttonIsPlaying;
-        }
+        };
       }
     };
   });

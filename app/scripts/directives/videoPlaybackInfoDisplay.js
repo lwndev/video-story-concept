@@ -5,7 +5,7 @@ angular.module('storyConceptApp')
     return {
       templateUrl: '/templates/videoPlaybackInfoDisplay.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         element.text('this is the videoPlaybackInfoDisplay directive');
       }
     };

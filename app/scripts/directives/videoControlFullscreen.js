@@ -8,10 +8,10 @@ angular.module('storyConceptApp')
         buttonIsFullscreen: '='
       },
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope) {
         scope.goFullscreen = function () {
           scope.buttonIsFullscreen = !scope.buttonIsFullscreen;
-        }
+        };
       }
     };
   });

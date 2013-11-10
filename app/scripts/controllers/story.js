@@ -3,10 +3,10 @@
 angular.module('storyConceptApp')
   .controller('StoryCtrl', function ($scope, $routeParams, VideoFactory) {
 
-    $scope.videoIsPlaying;
-    $scope.videoIsMuted;
-    $scope.videoTimecodeValue;
-    $scope.videoTimecodeText;
+    $scope.videoIsPlaying = false;
+    $scope.videoIsMuted = false;
+    $scope.videoTimecodeValue = 0;
+    $scope.videoTimecodeText = '';
     $scope.currentCuePoint = null;
     $scope.floatPlayerVisible = false;
 
@@ -50,12 +50,12 @@ angular.module('storyConceptApp')
           }
         }else{
           if(currentTimeToFixed === $scope.hmsToSeconds($scope.video.cuepoints[0].timecode)){
-            $scope.currentCuePoint = $scope.video.cuepoints[0]
+            $scope.currentCuePoint = $scope.video.cuepoints[0];
           }
         }
 
         if($scope.currentCuePoint !== null){
-          console.log("$scope.currentCuePoint:" + $scope.currentCuePoint.timecode);
+          console.log('$scope.currentCuePoint:' + $scope.currentCuePoint.timecode + ' durationToFixed: ' + durationToFixed);
         }
 
       }
@@ -65,7 +65,7 @@ angular.module('storyConceptApp')
 
       console.log('show hero video');
 
-      if($scope.floatPlayerVisible == true){
+      if($scope.floatPlayerVisible === true){
         $scope.floatPlayerStopDraw();
         $scope.hideFooter();
         $scope.floatPlayerVisible = false;
@@ -76,7 +76,7 @@ angular.module('storyConceptApp')
 
       console.log('hide hero video');
 
-      if($scope.floatPlayerVisible == false){
+      if($scope.floatPlayerVisible === false){
         $scope.floatPlayerDraw();
         $scope.showFooter();
         $scope.floatPlayerVisible = true;
@@ -85,17 +85,17 @@ angular.module('storyConceptApp')
     };
 
     $scope.hideFooter = function() {
-      $scope.$apply(function(){ $scope.floatPlayerVisible = false } );
-    }
+      $scope.$apply(function(){ $scope.floatPlayerVisible = false; } );
+    };
 
     $scope.showFooter = function() {
-      $scope.$apply(function(){ $scope.floatPlayerVisible = true } );
-    }
+      $scope.$apply(function(){ $scope.floatPlayerVisible = true; } );
+    };
 
     $scope.hmsToSeconds = function (hms) {
-      var h = parseInt(hms.split(":")[0]) * 3600;
-      var m = parseInt(hms.split(":")[1]) * 60;
-      var s = parseInt(hms.split(":")[2]);
+      var h = parseInt(hms.split(':')[0],10) * 3600;
+      var m = parseInt(hms.split(':')[1],10) * 60;
+      var s = parseInt(hms.split(':')[2],10);
 
       return h + m + s;
     };

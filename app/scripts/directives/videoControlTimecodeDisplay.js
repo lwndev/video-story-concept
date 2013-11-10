@@ -7,9 +7,6 @@ angular.module('storyConceptApp')
       scope: {
         videoControlTimecodeDisplayValue: '='
       },
-      restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-
-      }
+      restrict: 'E'
     };
   });
