@@ -4,7 +4,7 @@ angular.module('storyConceptApp')
   .directive('videoPlayer', function () {
 
     return {
-      templateUrl: '/templates/videoPlayer.html',
+      templateUrl: 'templates/videoPlayer.html',
       scope: {
         storyVidSrc: '@',
         storyImgSrc: '@',

@@ -14,7 +14,7 @@ angular.module('storyConceptApp')
         videoPlaybackVidSrc: '@',
         videoPlaybackImgSrc: '@'
       },
-      templateUrl: '/templates/videoPlayback.html',
+      templateUrl: 'templates/videoPlayback.html',
       restrict: 'E',
       link: function postLink(scope, element) {
 

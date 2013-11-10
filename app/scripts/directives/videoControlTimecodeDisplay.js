@@ -3,7 +3,7 @@
 angular.module('storyConceptApp')
   .directive('videoControlTimecodeDisplay', function () {
     return {
-      templateUrl: '/templates/videoControlTimecodeDisplay.html',
+      templateUrl: 'templates/videoControlTimecodeDisplay.html',
       scope: {
         videoControlTimecodeDisplayValue: '='
       },

@@ -9,7 +9,7 @@ angular.module('storyConceptApp')
         progressBarUpdate: '=',
         videoPlaybackEnded: '='
       },
-      templateUrl: '/templates/videoControlProgressBar.html',
+      templateUrl: 'templates/videoControlProgressBar.html',
       restrict: 'E',
       link: function postLink(scope, element) {
 

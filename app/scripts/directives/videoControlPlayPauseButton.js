@@ -3,7 +3,7 @@
 angular.module('storyConceptApp')
   .directive('videoControlPlayPauseButton', function () {
     return {
-      templateUrl: '/templates/videoControlPlayPauseButton.html',
+      templateUrl: 'templates/videoControlPlayPauseButton.html',
       scope: {
         buttonIsPlaying: '='
       },

@@ -10,6 +10,6 @@ angular.module('storyConceptApp')
         videoControlsTimecode: '=',
         videoControlsIsFullscreen: '='
       },
-      templateUrl: '/templates/videoControls.html'
+      templateUrl: 'templates/videoControls.html'
     };
   });
